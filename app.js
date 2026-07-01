@@ -75,6 +75,8 @@ const emptyState = document.getElementById('empty-state');
 const filterTabs = document.querySelectorAll('.filter-tab');
 const searchInput = document.getElementById('search-input');
 const sortSelect = document.getElementById('sort-select');
+const menuToggle = document.getElementById('menu-toggle');
+const navWrapper = document.getElementById('nav-wrapper');
 
 // Modal Elements
 const quickviewModal = document.getElementById('quickview-modal');
@@ -162,8 +164,47 @@ function initEventListeners() {
         renderCatalog();
     });
 
-    // Toggle Admin Drawer (Authorization Check)
-    btnToggleAdmin.addEventListener('click', () => requestAdminAccess());
+    // Mobile Hamburger Menu Toggle
+    if (menuToggle && navWrapper) {
+        menuToggle.addEventListener('click', () => {
+            navWrapper.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navWrapper.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when navigation links are clicked
+        const navLinksList = navWrapper.querySelectorAll('.nav-item');
+        navLinksList.forEach(link => {
+            link.addEventListener('click', () => {
+                navWrapper.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Close menu when admin toggle button is clicked
+        btnToggleAdmin.addEventListener('click', () => {
+            navWrapper.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+            requestAdminAccess();
+        });
+    } else {
+        btnToggleAdmin.addEventListener('click', () => requestAdminAccess());
+    }
+
     btnCloseAdmin.addEventListener('click', () => toggleAdminDrawer(false));
     if (btnQuickAdmin) btnQuickAdmin.addEventListener('click', () => requestAdminAccess());
     if (btnEmptyAdd) btnEmptyAdd.addEventListener('click', () => requestAdminAccess());

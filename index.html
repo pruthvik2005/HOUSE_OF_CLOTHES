@@ -12,7 +12,7 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=1.0.1">
 </head>
 <body>
 
@@ -24,17 +24,23 @@
                 <span class="brand-subtitle">Where Tradition Meets Elegance</span>
             </a>
             
-            <nav class="nav-links" id="main-nav">
-                <a href="#catalog" class="nav-item">Collections</a>
-                <a href="#about" class="nav-item">About Us</a>
-                <a href="#contact" class="nav-item">Contact</a>
-            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-            <div class="header-actions">
-                <button class="btn btn-admin" id="btn-toggle-admin" title="Manage Collections">
-                    <i class="fa-solid fa-sliders"></i>
-                    <span>Manage Collections</span>
-                </button>
+            <div class="nav-wrapper" id="nav-wrapper">
+                <nav class="nav-links" id="main-nav">
+                    <a href="#catalog" class="nav-item">Collections</a>
+                    <a href="#about" class="nav-item">About Us</a>
+                    <a href="#contact" class="nav-item">Contact</a>
+                </nav>
+    
+                <div class="header-actions">
+                    <button class="btn btn-admin" id="btn-toggle-admin" title="Manage Collections">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Manage Collections</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -315,6 +321,6 @@
     <div class="toast hidden" id="toast">Item added successfully!</div>
 
     <!-- JavaScript File -->
-    <script src="app.js"></script>
+    <script src="app.js?v=1.0.1"></script>
 </body>
 </html>
